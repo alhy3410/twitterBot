@@ -14,10 +14,12 @@ targetFileToWrite = open(filename, 'w')
 targetFileToWrite.truncate(0)
 #client.update("Second Post to test!") #This will post the tweet with the string
 
-client.search("#hashtag").take(100).each do |tweet|
+client.search("portland").take(100).each do |tweet|
   # Push all the tweets collected one by one to the default output (command-line, usually)
   targetFileToWrite.write(tweet.text)
   targetFileToWrite.write("\n")
+  targetFileToWrite.write("\n")
+
 end
 
 targetFileToWrite.close()

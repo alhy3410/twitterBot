@@ -12,12 +12,12 @@ filename = $stdin.gets.chomp
 
 targetFileToWrite = open(filename, 'w')
 targetFileToWrite.truncate(0)
-# client.update("Second Post to test!") This will post the tweet with the string
+#client.update("Second Post to test!") #This will post the tweet with the string
 
-friendsList = client.friends
+friendsList = client.user_timeline("kuzmeister")
 
-friendsList.each do |friend|
-  targetFileToWrite.write(friend.screen_name)
+friendsList.each do |tweet|
+  targetFileToWrite.write(tweet.text)
   targetFileToWrite.write("\n")
 end
 
