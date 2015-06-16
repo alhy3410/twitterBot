@@ -7,6 +7,10 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = "o9edZOjDldCYKlDmiyTjU7LOqu2jNtZYVHrrld5unBn7p"
 end
 
+
+print "Type the search term you are looking for: "
+searchTerm = $stdin.gets.chomp
+
 print "Type the name of the file you want to record to: "
 filename = $stdin.gets.chomp
 
@@ -14,7 +18,8 @@ targetFileToWrite = open(filename, 'w')
 targetFileToWrite.truncate(0)
 #client.update("Second Post to test!") #This will post the tweet with the string
 
-client.search("portland").take(100).each do |tweet|
+
+client.search(searchTerm).take(1000).each do |tweet|
   # Push all the tweets collected one by one to the default output (command-line, usually)
   targetFileToWrite.write(tweet.text)
   targetFileToWrite.write("\n")
