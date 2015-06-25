@@ -18,14 +18,22 @@ targetFileToWrite = open(filename, 'w')
 targetFileToWrite.truncate(0)
 #client.update("Second Post to test!") #This will post the tweet with the string
 
-
+tweetHold = []
 client.search(searchTerm).take(1000).each do |tweet|
   # Push all the tweets collected one by one to the default output (command-line, usually)
-  targetFileToWrite.write(tweet.text)
-  targetFileToWrite.write("\n")
-  targetFileToWrite.write("\n")
+
+  tweetHold.push(tweet.text)
 
 end
+
+  uniq = tweetHold.uniq
+
+  uniq.each do |sentence|
+    targetFileToWrite.write(sentence)
+    targetFileToWrite.write("\n")
+    targetFileToWrite.write("\n")
+  end
+
 
 targetFileToWrite.close()
 
